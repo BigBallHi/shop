@@ -1,0 +1,155 @@
+<style>
+.imageBox
+{
+	float:left;
+    position: relative;
+    height: 300px;
+    width: 300px;
+    border:1px solid #aaa;
+    background: #fff;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    cursor:move;
+    
+}
+
+.imageBox .thumbBox
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    margin-top: -75px;
+    margin-left: -75px;
+    box-sizing: border-box;
+    border: 1px solid rgb(102, 102, 102);
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0% 0% transparent;
+}
+
+.imageBox .spinner
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    line-height: 300px;
+    background: rgba(0,0,0,0.7);
+}
+.btn-getava{
+	height:40px;
+	margin-left:40px;
+	clear:both;
+	cursor:pointer;
+	width: 200px;
+	background: #92c202;
+	boeder:none;
+	color:#fff;
+	margin-bottom:100px;
+}
+.btn-size{
+margin-left:40px;
+	cursor:pointer;
+	width:30px;
+	height:30px;
+	
+}
+.btn-subava{
+margin-left:40px;
+clear:both;
+	cursor:pointer;
+	width: 200px;
+	    background: #92c202;
+	    boeder:none;
+	    color:#fff;
+	    margin-top:66px;
+	    height:40px;
+	    border-radius: 3px;
+}
+
+</style>
+
+<nav class="nav-r">
+	<a href="#userinfo" class="tab ">
+		<i class="icon icon-dol"></i>
+		编辑资料
+	</a>
+	<a href="#" class="tab active">
+		<i class="icon icon-dol"></i>
+		修改头像
+	</a>
+	
+</nav>
+<div class="con-r">
+	<div class="form">
+		<div class="unit">
+			<div class="container">
+    			<div class="imageBox">
+        			<div class="thumbBox"></div>
+        			<div class="spinner" style="display: none">Loading...</div>
+    			</div>
+			    <div class="action">
+			        <input type="file" id="file" class="file-ava" style="display:none">
+			        <input type="button" value="选择图片" class="btn-getava">
+			        <br>
+			        <input type="button" id="btnZoomOut" value="-" class="btn-size btn-size-s">
+			        <input type="button" id="btnZoomIn" value="+" class="btn-size btn-size-l">
+			       
+			       
+			        <br>
+			        <input type="button" id="btnCrop" value="提交" class="btn-subava">
+			        
+			        
+			    </div>
+    			<div class="cropped">
+
+   				 </div>
+			</div>
+			<span class="clearfix"></span>
+		</div>
+	</div>
+</div>
+
+<script src="js/jquery-1.11.1.min.js"></script>
+
+<script src="js/cropbox.js"></script>
+<script type="text/javascript">
+$('.btn-getava').click(function(){
+	$('.file-ava').trigger('click');
+});
+    $(document).ready(function() {
+        var options =
+        {
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: 'images/avatar.jpg'
+        }
+        var cropper = $('.imageBox').cropbox(options);
+        $('#file').on('change', function(){
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                options.imgSrc = e.target.result;
+                cropper = $('.imageBox').cropbox(options);
+            }
+            reader.readAsDataURL(this.files[0]);
+        })
+        $('#btnCrop').on('click', function(){
+            var img = cropper.getDataURL();
+            $.post('saveAvatar.GoodImgServlet',{img:img},function(json){
+            	
+            	location.reload();
+            	showAlert('上传头像成功');
+            })
+            //$('.cropped').append('<img src="'+img+'">');
+        })
+        $('#btnZoomIn').on('click', function(){
+            cropper.zoomIn();
+        })
+        $('#btnZoomOut').on('click', function(){
+            cropper.zoomOut();
+        })
+    });
+</script>

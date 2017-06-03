@@ -1,0 +1,99 @@
+<nav class="nav-r">
+	<a href="#up-good" class="tab">
+		<i class="icon icon-dol"></i>
+		上传商品
+	</a>
+	<a href="#up-need" class="tab active">
+		<i class="icon icon-dol"></i>
+		发布需求
+	</a>
+</nav>
+<div class="con-r">
+	<div class="form">
+		<div class="unit">
+			<div class="l"><p class="subtitle">需求描述<em>*</em></p></div>
+			<div class="r"><textarea id="info" class="des" maxlength="100"></textarea></div>
+			<span class="clearfix"></span>
+		</div>
+		<div class="unit">
+			<div class="l"><p class="subtitle">价格<em>*</em></p></div>
+			<div class="r"><input maxlength="7" id="price" type="text" class="price"></div>
+			<span class="clearfix"></span>
+		</div>
+		<p class="divider"></p>
+		<div class="unit">
+			<div class="l"><p class="subtitle">类别<em>*</em></p></div>
+			<div class="r">
+				<select id="category">
+				<option value="sports">体育·健身</option>
+				<option value="3c">电子·数码</option>
+				<option value="book">书籍</option>
+				<option value="transport">交通</option>
+				<option value="music">乐器</option>
+				<option value="card">卡·票转让</option>
+				<option value="life">宿舍·生活</option>
+				<option value="cloth">衣物</option>
+				<option value="house">租房</option>
+				<option value="pack">毕业打包</option>
+				<option value="other">其他</option>
+				</select>
+			</div>
+			<span class="clearfix"></span>
+		</div>
+		<p class="divider"></p>
+		<button class="sub" id="subneed">发布</button>
+	</div>
+</div>
+<script>
+function getInfo(){
+	var info = $('#info').val();
+	if (info.length < 1 || info.length > 100 ){
+		$('#info').css('border-color','red');
+		return;
+	}else{
+		$('#info').css('border-color','#bbb');
+	}
+	return info;
+}	
+function getPrice(){
+	var price = $('#price').val();
+	if(!price.match("^\\d+\\.?\\d{0,2}$")||price.length>8){
+		$('#price').css('border-color','red');
+		return;
+	}else{
+		$('#price').css('border-color','#bbb');
+	}
+	return price;
+}
+$('#info').keyup(function(){
+	getInfo();
+});
+$('#price').keyup(function(){
+	getPrice();
+});	
+function getCategory(){
+	return $('#category').val();
+}
+	$('#subneed').click(function(){
+		var info = getInfo();
+		var price = getPrice();
+		var category = getCategory();
+		if(info == null || price == null || category == null){
+			showAlert('数据有误');
+			return;
+		}
+		var json = {};
+		json.info = info;
+		json.price = price;
+		json.category = category;
+		json = JSON.stringify(json);
+		$.post('save.NeedServlet',{json:json},function(data){
+			if($.parseJSON(data).success){
+				updateRight(window.location.hash);
+				showAlert('上传成功！');
+			}else{
+				showAlert('上传异常！');
+			}
+		});
+	});
+</script>

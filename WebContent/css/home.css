@@ -1,0 +1,408 @@
+
+input,button,textarea,select{
+outline: none;
+}
+ul{list-style: none;}
+a:hover{color: #92c202;}
+.fixednav{
+    position: fixed;
+    top: 46px;
+    left: 0px;
+    width: 100%;
+    z-index: 1;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.1);
+    background: #f8f8f8;
+}
+
+
+
+
+.banner{
+	margin-top: 46px;
+	height: 180px;
+	margin:46px auto 0;
+	/*width:1349px;*/
+	overflow: hidden;text-align:center
+}
+.banner-href{
+	background-image: url(http://hener.me/img/banner/oldgoodfes.jpg);
+	display: block;
+    height: 180px;
+    background: no-repeat center top;
+    background-size: auto 100%;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+}
+.banner img{
+	height: 180px;
+	display:inline;
+}
+.nav{
+	height: 46px;
+	line-height: 42px;
+
+}
+.nav .wwp a{
+	display: inline-block;
+	text-align: left;
+	font-family: Michroma, "Segoe UI Light", "Segoe UI", "Segoe UI WP", "Microsoft Jhenghei", 微软雅黑, sans-serif, Times;
+	font-size: 16px;
+	color: #333;
+	border-bottom: 3px solid #fff;
+	margin: 0 20px;
+}
+.nav .wwp a:hover{
+	color: #92c202;
+}
+.nav .wwp a.active{
+	border-color: #92c202;
+	color:#92c202;	
+}
+
+
+.orderlist{
+	position: fixed;
+	display: block;
+	float: left;
+	width: 90px;
+	    margin-left: 15px;
+    margin-top: 12px;
+}
+.orderlist a{
+	
+    padding: 0 10px;
+    line-height: 26px;
+    text-align: center;
+    display: inline-block;
+    background: #fff;
+    color: #333;
+    font-size: 12px;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+
+}
+a.order-time:hover{
+	background: #e74c3c;
+	color: #fff;
+}
+a.order-time.active{
+	background: #e74c3c;
+	color: #fff;
+}
+a.order-price:hover{
+	background: #3a9bd9;
+	color: #fff;
+}
+a.order-price.active{
+	background: #3a9bd9;
+	color: #fff;
+}
+a.filter-key:hover{
+	background: #4edd9c;
+	color: #fff;
+}
+a.filter-key.active{
+	background: #4edd9c;
+	color: #fff;
+}
+a.filter-lock:hover{
+	background: #4edcdd;
+	color: #fff;
+}
+a.filter-lock.active{
+	background: #4edcdd;
+	color: #fff;
+}
+.main{
+	padding-top: 16px;
+	background: #f8f8f8;
+}
+
+.goodlist{
+    border: solid 0px #e5e5e5;
+    border-radius: 7px;
+    float: left;
+    width: 800px;
+    margin-top: 5px;
+    
+}
+.goodbox{
+	
+    float: left;
+    padding-left: 18px;
+    margin-bottom: 22px;
+    margin-top: 0px;
+}
+.goodpic img{
+	border-radius: 7px;
+	width: 180px;
+	height: 180px;
+	background-color: #999;
+}
+.goodpic{
+	position: relative;
+	width: 180px;
+	height: 180px;
+}
+.cov{
+	border-radius: 7px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	
+}
+.cov:hover{
+	background: rgba(0,0,0,0.7);
+}
+.detail{
+	height: 120px;
+    letter-spacing: 2px;
+    font-size: 14px;
+    width: 160px;
+    margin-top: 20px;
+    margin-left: 10px;
+    color: #92c202;
+    display: none;
+    word-break: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.cov:hover .detail{
+	display: block;
+}
+.cov:hover .times{
+	display: block;
+}
+
+.info{
+	margin-top: 6px;
+	height: 30px;
+	line-height: 30px;
+	
+}
+.times{
+	display:none;
+	color:#31708f;
+	float:right;
+	font-size: 12px;
+	margin:3px 20px;
+}
+.user{
+	font-size: 13px;
+	text-align: center;
+	float: left;
+}
+.info a:hover span{
+	color: #92c202;
+}
+.user img{
+	float: left;
+	border-radius: 5px;
+	width: 30px;
+	height: 30px;
+	padding-right: 4px;
+}
+.user span{
+	    color: #92c202;
+    display: inline-block;
+    width: 75px;
+    height: 20px;
+    overflow: hidden;
+}
+.price{
+	font-size: 14px;
+	float: right;
+	margin-right: 10px;
+}
+.price {
+	color: #999;
+}
+.price em{
+	font-size: 16px;
+	font-style: normal;
+	color: #f40;
+}
+.time{
+	padding-top: 3px;
+	font-size: 12px;
+	color: #333;
+}
+.page-good{
+	clear: both;
+    diplay: block;
+    height: 50px;
+    margin-left: 354px;
+}
+.page-need{
+	margin-left: 20px;
+}
+.page.page-need a{
+	border:none;
+}
+.page a{
+	display: block;
+    float: left;
+    height: 27px;
+    line-height: 27px;
+    font-size: 14px;
+    margin-left: 10px;
+    padding: 0 10px;
+    border: solid 1px #999;
+    border-radius: 2px;
+    color:#333;
+}
+.page a:hover{
+	background: #92c202;
+	border-color: #92c202;
+	color:#fff;
+}
+.page a.page-item.active{
+	background: #92c202;
+	border-color: #92c202;
+	color:#fff;
+}
+
+.formtitle{
+	position: relative;
+    width: auto;
+    height: 36px;
+    color: #666;
+    text-align: left;
+    font-size: 14px;
+
+    margin: 0;
+    padding: 0;
+}
+.formtitle p{
+	    font-weight: normal;
+    font-size: 18px;
+    font-family: Michroma, "Segoe UI Light", "Segoe UI", "Segoe UI WP", "Microsoft Jhenghei", 微软雅黑, sans-serif, Times;
+    cursor: default;
+    float: left; 
+}
+.downline{
+	display: block;
+	height: 17px;
+	float: left;
+	border-left:2px solid #055f95; 
+	margin-right: 4px;
+}
+.formtitle .hint{
+	    margin: 0 0 0 4px;
+    color: #ccc;
+    font-size: 10px;
+}
+
+.need{
+	width: 350px;
+	float: right;
+}
+
+.unit-need{
+	margin:0px 0 25px 0;
+}
+
+
+
+.tit{
+	color: #666;
+}
+.needdetail{
+	font-family: Michroma, "Segoe UI Light", "Segoe UI", "Segoe UI WP", "Microsoft Jhenghei", 微软雅黑, sans-serif, Times;
+	width: 250px;
+	word-break: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 1px 1px;
+    font-size: 14px;
+    
+}
+.needinfo{
+	    margin: 1px 1px;
+	width: 250px;
+}
+.needtime{
+	color: #909699;
+	    padding: 0 9px;
+}
+.needtimes{
+	color: #92c202;
+}
+.needprice{
+	color: #f40;
+}
+
+.userarea{
+	position: absolute;
+	right: 2px;
+	top: 2px;
+	width: 60px;
+}
+.ava{
+	width: 35px;
+	height: 35px;
+}
+.ava img{
+	width: 35px;
+	height: 35px;
+	border-radius: 5px;
+}
+.user span{color: #92c202;}
+.username{
+	font-family: Michroma, "Segoe UI Light", "Segoe UI", "Segoe UI WP", "Microsoft Jhenghei", 微软雅黑, sans-serif, Times;
+	font-size: 14px;
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+	overflow: hidden;
+}
+.msg{
+	padding: 0 10px;
+    line-height: 26px;
+    text-align: center;
+    display: inline-block;
+    background: #fff;
+    color: #333;
+    font-size: 12px;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.msg:hover{
+	    background: #92c202
+	   
+}
+.needlist{
+	
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-right: 1px solid #eee;
+   
+    max-height: 640px;
+    width: 100%;
+    position: relative;	
+}
+
+
+.sortlist{
+	display: none;
+}
+#sortbtn{
+	border: none;
+    height: 25px;
+    width: 50px;
+    line-height: 25px;
+    font-size: 14px;
+    vertical-align: top;
+    background: #92c202;
+    color: #fff;
+    border-radius:3px;
+    cursor: pointer;
+}
+
+
+
+/**********************more********************/

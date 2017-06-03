@@ -1,0 +1,294 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="./css/global.css">
+		<link rel="stylesheet" type="text/css" href="./css/member.css">
+		<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_sbu3x8p1560z4cxr.css">
+		<title>很二么</title>
+	</head>
+	<body>
+	<div id="curtain" style="opacity: 1;">&nbsp;</div>
+	<div class="alertbox" id="alertbox">
+		
+	</div>
+	<div class="contactbox">
+		<div class="closebtn">X</div>
+		<div class="unit-contact unit-phone">
+			<div class="l">电话</div>
+			<div class="r contactphone"></div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="divider"></div>
+		<div class="unit-contact unit-qq">
+			<div class="l">QQ</div>
+			<div class="r contactqq"></div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+<div class="sendmsgbox">
+		<h1>发送私信</h1>
+		<div class="divider"></div>
+		<div class="sendmsg-title">
+			<div class="sendmgs-seller l">
+				<span class="l">给</span><img class="sendava l" src=""><span class="sendname"></span><span>发送消息</span>	
+			</div>
+			<div class="good r">
+				<img class = "sendmsg-goodimg" src="">
+			</div>
+			<div class="clearfix"></div>
+			
+		</div>
+		
+		<textarea maxlength="100" class="sendmsg-ipt"></textarea>
+		
+		<button id="sendmsgbtn-ok" class="btn danger">发送</button> 
+		<button id="sendmsgbtn-nook" class="btn primary">取消</button> 
+	</div>
+<div id="ensurebox-msg" class="win">
+		<div class="title-ensurebox">
+			<h1 class="">是否确定查看联系方式</h1>
+			<span>我们有必要告诉您：</span><br><br>
+			<span>1、只要您查看了对方的联系方式或者给对方留言了，对方就可以查看您的联系方式。
+			</span><br><br>
+			<span>2.如果您是第一次查看改名用户的联系方式或是给他留言，我们会将这件事以短信的方式通知告诉对方
+			</span><br><br>
+			<span>3.点击取消按钮终止此次操作。</span>
+			<br><br>
+		</div>
+		<button id="ensurebox-msg-ok" class="btn danger">确定</button> 
+		<button id="ensurebox-msg-nook" class="btn primary">取消</button> 
+	</div>
+	<div id="confirm-deletegood" class="confirm win">
+		<h1 class="">确定要删除这件商品吗</h1>
+		<button class="btn danger confirm-ok">确定</button> 
+		<button class="btn primary confirm-nook">取消</button>
+	</div>
+	<div id="confirm-deleteneed" class="confirm win">
+		<h1 class="">确定要删除这件商品吗</h1>
+		<button class="btn danger confirm-ok">确定</button> 
+		<button class="btn primary confirm-nook">取消</button>
+	</div>
+<div id="findpwdBox" class="normalbox" >
+	<div class="header">
+		<h1>找回</h1>
+		<a class="close" href="javascript:;" onclick="closeFindpwdBox()"><i class="icon icon-close"></i></a>
+	</div>
+	<div class="box_main">
+		<div class="unit-normal">
+			<input maxlength="11" class="normalipt" id="input_findpwd_phone" type="text" placeholder="手机号码">
+		</div>
+		<div class="unit-normal">
+			<input maxlength="4" class="normalipt" id="input_findpwd_code" type="text" placeholder="验证码">
+			<input class="normalipt" id="input_findpwd_codebtn" type="button" value="发送">
+		</div>
+		<div class="unit-normal">
+			<input maxlength="16" class="normalipt" id="input_findpwd_pwd" type="text" placeholder="密码">
+		</div>
+		<button class="normalbtn" id="btn_findpwd" type="button">确认修改</button>
+	</div>
+</div>
+<div id="signBox" class="normalbox">
+	<div class="header">
+		<h1>欢迎登陆    ^_^</h1>
+		<a class="close" href="javascript:;" onclick="closeSignBox()"><i class="icon icon-close"></i></a>
+	</div>
+	<div class="box_main">
+		<div class="unit-normal">
+			<input maxlength="11" class="normalipt" id="input_sign_phone" type="text" placeholder="手机号码">
+		</div>
+		<div class="unit-normal">
+			<input maxlength="16" class="normalipt" id="input_sign_pwd" type="password" placeholder="密码">
+		</div>
+		<button class="normalbtn" id="btn_sign" type="button">登陆</button>
+		<a id="toregist" class="link" href="#">注册>></a>
+		<a class="link link-findpwd" href="#">忘记密码了？</a>
+	</div>
+</div>
+<div id="registBox" class="normalbox">
+	<div class="header">
+		<h1>欢迎注册    ^_^</h1>
+		<a class="close" href="javascript:;" onclick="closeRegistBox()"><i class="icon icon-close"></i></a>
+	</div>
+	<div class="box_main">
+		<div class="unit-normal">
+			<input maxlength="11" class="normalipt" id="input_regist_phone" type="text" placeholder="手机号码">
+			<span class="hint-hover"><i class="icon icon-question"></i>详细<span class="tip" id="tip-phone" data-content="▼">&emsp;&emsp;&emsp;&emsp;&emsp;！！！<br>1、&nbsp;我们承诺不会向您发送任何推广、广告、等垃圾消息<br><br>2、&nbsp;如果您同意注册，我们会尽全力保护您的隐私<br>&emsp;&emsp;您的联系方式已经默认设置为不可见，您之后可以修改这条设定<br><br>3、&nbsp;联系方式可见和不可见有什么区别？？？<br>&emsp;&emsp;当卖家需要要联系您时，如果您选择公布联系方式，我们会直接将您的联系方式告诉他，并且也将他的联系方式和他查看了您的联系方式这件事以短信的方式通知您。<br>&emsp;&emsp;如果您选择不公布联系方式，其他用户只可以通过我们的网站给您发送信息。<br>4、&nbsp;如果您被骚扰了，您只需要设置拒绝该卖家联系您就好了。</span></span>
+		</div>
+		<div class="unit-normal">
+			<input maxlength="16" class="normalipt" id="input_regist_pwd" type="text" placeholder="密码">
+		</div>
+		
+		<button class="normalbtn" id="btn_regist" type="button">注册</button>
+		<a id="tosign" class="link" href="#">已有账号>></a>
+		<a class="link link-findpwd" href="#">账号已经被注册了？</a>
+	</div>
+</div>
+	
+<div id="setpwdBox" class="normalbox" >
+	<div class="header">
+		<h1>修改密码</h1>
+		<a class="close" href="javascript:;" onclick="closeSetPwdBox()"><i class="icon icon-close"></i></a>
+	</div>
+	<div class="box_main">
+		<div class="unit-normal">
+			<input maxlength="16" class="normalipt" id="input_setpwd_old" type="text" placeholder="原来的密码">
+		</div>
+		<div class="unit-normal">
+			<input maxlength="16" class="normalipt" id="input_setpwd_new" type="text" placeholder="新密码">
+		</div>
+		<button class="normalbtn" id="btn_setpwd" type="button">确认修改</button>
+	</div>
+</div>
+
+
+	<div class="top">
+			<div class="wwp">
+				<ul class="guide">
+					<li class="guide-main" id="idea">
+						<a href="javascript:;" id="suggest"><i  class="icon icon-idea"></i></a>
+						<div class="idea-sub  guide-sub">
+							<ul>
+								<li>如果您有什么建议或者意见可以直接联系<br>QQ:1343644829</li>
+							</ul>
+						</div>
+					</li>
+
+					<li class="guide-main" id="history">
+						<a href="javascript:;" ><i  class="icon icon-history"></i></a>
+						<div class="history-sub guide-sub">
+							<ul>
+								<li>历史记录功能还在加紧完成中。。。</li>	
+							</ul>
+
+						</div>
+					</li>
+					<li class="guide-main" id="up">
+						<a href = 'javscript:;' class="a-upgood" ><i  class="icon icon-up"></i></a>
+						<div class="up-sub guide-sub">
+							<ul>
+								<li><a href = 'javscript:;' class="a-upgood">上传商品</a></li>
+								<li><a href = 'javscript:;' class="a-upneed">发布需求</a></li>
+							</ul>
+						</div>
+					</li>
+
+					<li class="guide-main" id="user" >
+						<a href="javascript:;" onclick="showSignBox()" id="sign"><i class="icon icon-user"></i></a>
+						<div class="user-sub  guide-sub">
+							<ul>
+								<li><a href="javascript:;" onclick="showSignBox()">登陆</a></li>
+								<li><a href="javascript:;" onclick="showRegistBox()">注册</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="guide-main" id="signed" style="display:inline-block">
+						<a href="member.html#userinfo" id = "signed-user" target="_blank"><em id="msgcount">1</em><img id="signed-avatar" src=""><span id="signed-name">哈哈哈</span></a>
+						<div class="signed-sub guide-sub">
+							<div class="msglist">
+								<div class="unit-msg">
+									<a href="member.html#msg">您有<span id='span-msgcount'></span>条新的条私信</a>
+								</div>
+							</div>	
+							<span class="clearfix"></span>
+							<p class="divider"></p>
+							<a href="member.html#userinfo">个人中心</a>
+							<a href="" onclick="signOut()">注销</a>
+						</div>
+					</li>
+
+				</ul>
+				<form class="search-box">
+					<input id="key" type="text" name="" class="search-ipt">
+					<button id="search" type="button" class="search-btn"><i class="icon icon-search"></i></button>
+				</form>
+				<div class="logo"><a href="http://hener.me"><img src='http://hener.me/img/logo/logo.png'></a></div>
+			</div>
+
+		</div>
+		
+	
+	<div class="header-m"></div>
+	<div class="mainer">
+		<div class="mainer-inner">
+			<div class="mainner-l">
+				<div class="l-inner">
+					<div class="user">
+						<a href="#avatar" class="tbl">
+							<img id="member-avatar" src="">
+						</a>
+						<div class="d">
+							<a href="#" id="member-name" class="member-name"></a>
+						</div>
+						<p title="单机修改" class="desc1"><span id="member-info">...</span><i class="icon icon-set"></i></p>
+						<input maxlength="30" type="text" name="" id="member-infoinput">
+						<div class="count">
+							<div class="space"></div>
+							<a href="#manager-myupgoods">
+								<span class="pts" id="goodcount">0</span>
+								<span class="hins">成功上传</span>
+							</a>
+							<a href="#manager-myupneeds">
+								<span class="pts" id="needcount">0</span>
+								<span class="hins">我的需求</span>
+							</a>
+							
+							<a href="#manager-mylock">
+								<span class="pts" id= "lockedcount">1</span>
+								<span class="hins">我锁定的</span>
+							</a>
+							<a href="#manager-myupgoods">
+								<span class="pts" id="belockedcount">1</span>
+								<span class="hins">被锁定的</span>
+							</a>
+							
+						</div>
+					</div>
+					<div class="list">
+						<div class="item" id="welcome">
+							<a href="#welcome">
+								<i class="icon icon-w"></i>
+								欢迎
+							</a>
+						</div>
+						<div class="item" id="userinfo">
+							<a href="#userinfo">
+								<i class="icon icon-i"></i>
+								个人资料
+							</a>
+						</div>
+						<div class="item" id="msg">
+							<a href="#msg">
+								<i class="icon icon-m"></i>
+								私信
+							</a>
+						</div>
+						<div class="item" id="up">
+							<a href="#up-good">
+								<i class="icon icon-u"></i>
+								信息发布
+							</a>
+						</div>
+						<div class="item" id="manager">
+							<a href="#manager-myupgoods">
+								<i class="icon icon-s"></i>
+								管理商品
+							</a>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="mainer-r">
+			
+			</div>
+		</div>
+	</div>
+	<script src="./js/jquery.js"></script>
+	<script src="./js/function.js"></script>
+	<script src="./js/member.js"></script>
+
+	</body>
+	</html>

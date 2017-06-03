@@ -1,0 +1,78 @@
+<nav class="nav-r">
+	<a href="#manager-myupgoods" class="tab active">
+		<i class="icon icon-dol"></i>
+		我的上传
+	</a>
+	<a href="#manager-myupneeds" class="tab">
+		<i class="icon icon-dol"></i>
+		我的需求
+	</a>
+	<a href="#manager-mylock" class="tab">
+		<i class="icon icon-dol"></i>
+		我的锁定
+	</a>
+
+</nav>
+<div class="con-r">
+	<div class="form">
+		<div class="unit-good">
+			
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+	$.getJSON('listMyGood.GoodServlet',function(json){
+		fillMyGood(json);
+	});
+});
+$('.form').on('click','.mana-remove',function(){
+	var goodid = $(this).attr('goodid');
+	showConfirm('confirm-deletegood',goodid);
+	
+});
+function showConfirm(confirmid,objid){
+	$('#'+confirmid+' .confirm-ok').attr('goodid',objid);
+	$('#curtain').show();
+	$('#'+confirmid).show();
+}
+$('.confirm-ok').click(function(){
+	var goodid = $(this).attr('goodid');
+	$.getJSON('removeGood.GoodServlet?goodid='+goodid,function(json){
+		if(json.success){
+			$('.win').hide();
+			$('#curtain').hide();
+			showAlert('删除成功');
+			var hash = window.location.hash;
+			updateRight(hash);
+		}
+	})
+});
+$('.confirm-nook').click(function(){
+	$('.win').hide();
+	$('#curtain').hide();
+});
+
+$('.form').on('click','.mana-modify',function(){
+	var goodid = $(this).attr('goodid');
+	window.location.href='#modify-good#'+goodid;
+});
+$('.form').on('click','.mana-contact',function(){
+	$.getJSON('getPQ.GoodServlet?lockeduserid='+$(this).attr('lockeduserid')+'&&goodid='+$(this).attr('goodid'),function(json){
+		$('.contactphone').html(json.phone);
+		$('.contactqq').html('未公布');
+		$('.contactbox').show();
+	});
+});
+$('.form').on('click','.mana-clearlock',function(){
+	var goodid = $(this).attr('goodid');
+	var lockeduserid = $(this).attr('lockeduserid');
+	$.get('clearLock.GoodServlet?goodid='+$(this).attr('goodid'),function(){
+		$.get('banLock.GoodServlet?goodid='+goodid+'&&lockeduserid='+lockeduserid,function(){
+			var hash = window.location.hash;
+			updateRight(hash);
+			showAlert("解除锁定成功！禁止该用户再次锁定该消息成功！");
+		});
+	});
+});
+</script>

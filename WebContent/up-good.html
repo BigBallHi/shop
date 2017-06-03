@@ -1,0 +1,554 @@
+
+<nav class="nav-r">
+	<a href="#up-good" class="tab active">
+		<i class="icon icon-dol"></i>
+		上传商品
+	</a>
+	<a href="#up-need" class="tab">
+		<i class="icon icon-dol"></i>
+		发布需求
+	</a>
+</nav>
+<div class="con-r">
+	<div class="form">
+		<div class="unit">
+			<div class="l"><p class="subtitle">详细信息<em>*</em></p></div>
+			<div class="r"><textarea id="info" class="des" maxlength="100" placeholder=""></textarea><span class="hint-hover"><i class="icon icon-question"></i>详细<span class="tip" id="tip-info" data-content="▼">事实证明（我猜的-_-）：<br>&emsp;&emsp;详细的描述能加快这件商品卖出的速度哦</span></span></div>
+			<span class="clearfix"></span>
+		</div>
+		<p class="divider"></p>
+		<div class="unit">
+			<div class="l"><p class="subtitle">价格<em>*</em></p></div>
+			<div class="r"><input maxlength="7" id="price" type="text" class="price"></div>
+			<span class="clearfix"></span>
+		</div>
+		<p class="divider"></p>
+		<div class="unit">
+			<div class="l"><p class="subtitle">关键字<em>*</em></p></div>
+			<div class="r">
+				<div class="tagbox">
+					<div class="tags">
+
+					</div>
+					<input type = "text" class="taginput">
+				</div>
+				<span class="hint-hover"><i class="icon icon-question"></i>什么是关键字？？？<span class="tip" id="tip-tags" data-content="▼">1、&nbsp;输入完每个关键字后记得按下回车<br><br>2、&nbsp;关键字是给别人搜索是用的<br><br>3、&nbsp;想一下别人搜索什么能找到您的商品，然后就填下这些关键字吧</span></span>
+			</div>
+			<span class="clearfix"></span>
+		</div>
+		<p class="divider"></p>
+		
+		<div class="unit">
+			<div class="l"><p class="subtitle">类别<em>*</em></p></div>
+			<div class="r">
+				<select id="category">
+				<option value="sports">体育·健身</option>
+				<option value="3c">电子·数码</option>
+				<option value="book">书籍</option>
+				<option value="transport">交通</option>
+				<option value="music">乐器</option>
+				<option value="card">卡·票转让</option>
+				<option value="life">宿舍·生活</option>
+				<option value="cloth">衣物</option>
+				<option value="house">租房</option>
+				<option value="pack">毕业打包</option>
+				<option value="other">其他</option>
+				</select>
+				<span class="hint-hover"><i class="icon icon-question"></i>详细<span class="tip" id="tip-info" data-content="▼">1、&nbsp;现在正是毕业季，选一个合适的类别才能方便其他用户查看哦</span></span>
+				&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				<span class="hint-hover"><i class="icon icon-question"></i>图片说明<span class="tip" id="tip-pics" data-content="▼">事实证明（我猜的-_-）：<br>1、&nbsp;图片比您的文字描述更重要。<br>2、&nbsp;第一张图片会在主页显示出来。<br>3、&nbsp;您最多上传四张图片<br>&emsp;&emsp;也请您至少上传第一张图片。</span></span>
+			</div>
+			<span class="clearfix"></span>
+		</div>
+		<p class="divider"></p>
+
+		<div class="piclist">
+			<div class="pic">
+				<i class="icon icon-p" id="pic1-add"></i>
+				<img id="pic1" class="pictbl">
+				<div class="cover" id="pic1-cov">
+					<i class="icon icon-remove" id="pic1-remove"></i>
+					<i class="icon icon-change" id="pic1-change"></i>
+					<i class="icon icon-seebig" id="pic1-seebig"></i>
+				</div>
+			</div>
+			<div class="pic">
+				<i class="icon icon-p" id="pic2-add"></i>
+				<img id="pic2" class="pictbl">
+				<div class="cover" id="pic2-cov">
+					<i class="icon icon-remove" id="pic2-remove"></i>
+					<i class="icon icon-change" id="pic2-change"></i>
+					<i class="icon icon-seebig" id="pic2-seebig"></i>
+				</div>
+			</div>
+			<div class="pic">
+				<i class="icon icon-p" id="pic3-add"></i>
+				<img id="pic3" class="pictbl">
+				<div class="cover" id="pic3-cov">
+					<i class="icon icon-remove" id="pic3-remove"></i>
+					<i class="icon icon-change" id="pic3-change"></i>
+					<i class="icon icon-seebig" id="pic3-seebig"></i>
+				</div>
+			</div>
+			<div class="pic">
+				<i class="icon icon-p" id="pic4-add"></i>
+				<img id="pic4" class="pictbl">
+				<div class="cover" id="pic4-cov">
+					<i class="icon icon-remove" id="pic4-remove"></i>
+					<i class="icon icon-change" id="pic4-change"></i>
+					<i class="icon icon-seebig" id="pic4-seebig"></i>
+				</div>
+			</div>
+			
+			
+
+		</div>
+		<div class="bigpic"><img id="bigpic"></div>
+		<button class="sub" id="subgood">上传</button>
+		<span class="clearfix"></span>
+<input type="file" id="file1" accept="image/png,image/jpeg" style="display:none"/> 
+<input type="file" id="file2" accept="image/png,image/jpeg" style="display:none"/>
+<input type="file" id="file3" accept="image/png,image/jpeg" style="display:none"/>
+<input type="file" id="file4" accept="image/png,image/jpeg" style="display:none"/>
+
+	</div>
+</div>
+<script type="text/javascript">
+$('.tagbox').click(function(){
+	$('.taginput').focus();
+});
+$('.tags').on('click','.remove',function(){
+	$(this).parent().remove();
+});
+$('.taginput').keydown(function(event){
+	var code = event.keyCode || event.which;
+	if(code == 13){
+		var val = $('.taginput').val();
+		val = val.replace(/\s/gi,"");
+		if(val.length>0){
+			$('.tags').append('<div class="tag">'+'<span class="tagval">'+val+'</span>'+'<div class="remove">×</div><div class="clearfix"></div></div>');
+			$('.taginput').val('');	
+		}
+	}
+	if(code == 8){
+		var val = $('.taginput').val();
+		if(val.length==0){
+			$('.tags .tag:last').remove();
+		}
+	}
+});
+
+$('#pic1-seebig').click(function(){
+	$('#bigpic').attr('src',$('#pic1').attr('src'));
+});
+$('#pic2-seebig').click(function(){
+	$('#bigpic').attr('src',$('#pic2').attr('src'));
+});
+$('#pic3-seebig').click(function(){
+	$('#bigpic').attr('src',$('#pic3').attr('src'));
+});
+$('#pic4-seebig').click(function(){
+	$('#bigpic').attr('src',$('#pic4').attr('src'));
+});
+$('#pic1-add').click(function(){
+	$('#file1').trigger('click');
+});
+$('#pic1-change').click(function(){
+	$('#file1').trigger('click');
+});
+$('#pic1-remove').click(function(){
+	if(typeof $('#tbl').attr('src') !== typeof undefined){
+		$('#tbl').removeAttr('src');	
+	}
+	if(typeof $('#pic1').attr('src') !== typeof undefined){
+		var remove = $('#pic1').attr('src');
+		$.post('removeFile.GoodImgServlet',{src:remove});	
+		$('#pic1').removeAttr('src');
+		$('#pic1-cov').css('display','none');
+		$('#pic1').css('display','none');
+		$('#pic1-add').css('display','block');
+		$('#file1').val(""); 
+		if($('#bigpic').attr('src')==remove){
+			$('#bigpic').attr('src','');
+			$('#bigpic').css('display','none');
+		}
+	}
+	
+});
+
+$('#file1').change(function(){
+	var time = new Date().getTime();
+	if(typeof $('#pic1').attr('src') !== typeof undefined){
+		var remove = $('#pic1').attr('src');
+		$.post('removeFile.GoodImgServlet',{src:remove});	
+	}
+	var img_src = document.getElementById("file1").files[0];
+	var reader = new FileReader();
+	//将图片读成base64
+	reader.readAsDataURL(img_src);
+	reader.onload = function(){
+		var result = this.result;
+		var img = new Image();
+		img.src = result;
+		//图片加载完成之后执行show方法
+		img.onload = compressToBoth;
+		function compressToBoth(){
+			var width = img.width;
+			var height = img.height;
+			var canvas = document.createElement("canvas");
+			canvas.width = 360;
+			canvas.height = 360;
+			//如果是宽图
+			if(width>height){
+				canvas.getContext("2d").drawImage(img,(width-height)/2,0,height,height,0,0,canvas.width,canvas.height);
+			}else{
+				canvas.getContext("2d").drawImage(img,0,(height-width)/2,width,width,0,0,canvas.width,canvas.height);
+			}
+			var compressed = canvas.toDataURL("image/jpeg",1);
+			$.post("saveGoodImg.GoodImgServlet",{img:compressed,time:time},function(data){
+				var src = $.parseJSON(data).src;
+				$('#pic1-add').css('display','none');
+				$('#pic1').attr('src',src);
+				$('#bigpic').attr('src',src);
+				$('#pic1').css('display','block');
+				$('#pic1-cov').css('display','block');
+				$('#bigpic').css('display','block');
+			});
+			canvas.width = 180;
+			canvas.height = 180;
+			//裁剪
+			//如果是宽图
+			if(width>height){
+				canvas.getContext("2d").drawImage(img,(width-height)/2,0,height,height,0,0,canvas.width,canvas.height);
+			}else{
+				canvas.getContext("2d").drawImage(img,0,(height-width)/2,width,width,0,0,canvas.width,canvas.height);
+			}
+			var compressed = canvas.toDataURL("image/jpeg",1);
+			$.post("saveGoodTbl.GoodImgServlet",{img:compressed,time:time},function(data){
+				var src = $.parseJSON(data).src;
+			
+			});
+		
+		}
+	}
+});
+//////////////////////////////////////////////////2//////////////////////////////////////////////////
+$('#pic2-add').click(function(){
+$('#file2').trigger('click');
+});
+$('#pic2-change').click(function(){
+$('#file2').trigger('click');
+});
+$('#pic2-remove').click(function(){
+if(typeof $('#pic2').attr('src') !== typeof undefined){
+	var remove = $('#pic2').attr('src');
+	$.post('removeFile.GoodImgServlet',{src:remove});	
+	$('#pic2').removeAttr('src');
+	$('#pic2-cov').css('display','none');
+	$('#pic2').css('display','none');
+	$('#pic2-add').css('display','block');
+	$('#file2').val(""); 
+	if($('#bigpic').attr('src')==remove){
+		$('#bigpic').attr('src','');
+		$('#bigpic').css('display','none');
+	}
+}
+});
+
+$('#file2').change(function(){
+var time = new Date().getTime();
+if(typeof $('#pic2').attr('src') !== typeof undefined){
+	var remove = $('#pic2').attr('src');
+	$.post('removeFile.GoodImgServlet',{src:remove});	
+}
+
+var img_src = document.getElementById("file2").files[0];
+var reader = new FileReader();
+	//将图片读成base64
+	reader.readAsDataURL(img_src);
+	reader.onload = function(){
+		var result = this.result;
+		var img = new Image();
+		img.src = result;
+		//图片加载完成之后执行show方法
+		img.onload = compressToImg;
+		function compressToImg(){
+			var width = img.width;
+			var height = img.height;
+			var canvas = document.createElement("canvas");
+			canvas.width = 360;
+			canvas.height = 360;
+			//如果是宽图
+			if(width>height){
+				canvas.getContext("2d").drawImage(img,(width-height)/2,0,height,height,0,0,canvas.width,canvas.height);
+			}else{
+				canvas.getContext("2d").drawImage(img,0,(height-width)/2,width,width,0,0,canvas.width,canvas.height);
+			}
+			var compressed = canvas.toDataURL("image/jpeg",1);
+			$.post("saveGoodImg.GoodImgServlet",{img:compressed,time:time},function(data){
+				var src = $.parseJSON(data).src;
+				$('#pic2-add').css('display','none');
+				$('#pic2').attr('src',src);
+				$('#bigpic').attr('src',src);
+				$('#pic2').css('display','block');
+				$('#pic2-cov').css('display','block');
+				$('#bigpic').css('display','block');
+			});
+		}
+	}
+});
+//////////////////////////////////////////////////3/////////////////////////////////////////////
+$('#pic3-add').click(function(){
+$('#file3').trigger('click');
+});
+$('#pic3-change').click(function(){
+$('#file3').trigger('click');
+});
+$('#pic3-remove').click(function(){
+if(typeof $('#pic3').attr('src') !== typeof undefined){
+	var remove = $('#pic3').attr('src');
+	$.post('removeFile.GoodImgServlet',{src:remove});	
+	$('#pic3').removeAttr('src');
+	$('#pic3-cov').css('display','none');
+	$('#pic3').css('display','none');
+	$('#pic3-add').css('display','block');
+	$('#file3').val(""); 
+	if($('#bigpic').attr('src')==remove){
+		$('#bigpic').attr('src','');
+		$('#bigpic').css('display','none');
+	}
+
+}
+
+});
+
+$('#file3').change(function(){
+var time = new Date().getTime();
+if(typeof $('#pic3').attr('src') !== typeof undefined){
+	var remove = $('#pic3').attr('src');
+	$.post('removeFile.GoodImgServlet',{src:remove});	
+}
+
+var img_src = document.getElementById("file3").files[0];
+var reader = new FileReader();
+	//将图片读成base64
+	reader.readAsDataURL(img_src);
+	reader.onload = function(){
+		var result = this.result;
+		var img = new Image();
+		img.src = result;
+		//图片加载完成之后执行show方法
+		img.onload = compressToImg;
+		function compressToImg(){
+			var width = img.width;
+			var height = img.height;
+			var canvas = document.createElement("canvas");
+			
+			canvas.width = 360;
+			canvas.height = 360;
+			
+			//如果是宽图
+			if(width>height){
+				canvas.getContext("2d").drawImage(img,(width-height)/2,0,height,height,0,0,canvas.width,canvas.height);
+			}else{
+				canvas.getContext("2d").drawImage(img,0,(height-width)/2,width,width,0,0,canvas.width,canvas.height);
+			}
+			var compressed = canvas.toDataURL("image/jpeg",1);
+			$.post("saveGoodImg.GoodImgServlet",{img:compressed,time:time},function(data){
+				var src = $.parseJSON(data).src;
+				$('#pic3-add').css('display','none');
+				$('#pic3').attr('src',src);
+				$('#bigpic').attr('src',src);
+				$('#pic3').css('display','block');
+				$('#pic3-cov').css('display','block');
+				$('#bigpic').css('display','block');
+			});
+		}
+	}
+});
+/////////////////////////////////////////////////4//////////////////////////////////////////////
+$('#pic4-add').click(function(){
+$('#file4').trigger('click');
+});
+$('#pic4-change').click(function(){
+$('#file4').trigger('click');
+});
+$('#pic4-remove').click(function(){
+if(typeof $('#pic4').attr('src') !== typeof undefined){
+	var remove = $('#pic4').attr('src');
+
+	$.post('removeFile.GoodImgServlet',{src:remove});	
+	$('#pic4').removeAttr('src');
+	$('#pic4-cov').css('display','none');
+	$('#pic4').css('display','none');
+	$('#pic4-add').css('display','block');
+	$('#file4').val(""); 
+	if($('#bigpic').attr('src')==remove){
+		$('#bigpic').attr('src','');
+		$('#bigpic').css('display','none');
+	}
+
+
+}
+
+});
+
+$('#file4').change(function(){
+var time = new Date().getTime();
+if(typeof $('#pic4').attr('src') !== typeof undefined){
+	var remove = $('#pic4').attr('src');
+	$.post('removeFile.GoodImgServlet',{src:remove});	
+}
+
+var img_src = document.getElementById("file4").files[0];
+var reader = new FileReader();
+	//将图片读成base64
+	reader.readAsDataURL(img_src);
+	reader.onload = function(){
+		var result = this.result;
+		var img = new Image();
+		img.src = result;
+		//图片加载完成之后执行show方法
+		img.onload = compressToImg;
+		function compressToImg(){
+			var width = img.width;
+			var height = img.height;
+			var canvas = document.createElement("canvas");
+			canvas.width = 360;
+			canvas.height = 360;
+			//如果是宽图
+			if(width>height){
+				canvas.getContext("2d").drawImage(img,(width-height)/2,0,height,height,0,0,canvas.width,canvas.height);
+			}else{
+				canvas.getContext("2d").drawImage(img,0,(height-width)/2,width,width,0,0,canvas.width,canvas.height);
+			}
+			var compressed = canvas.toDataURL("image/jpeg",1);
+			$.post("saveGoodImg.GoodImgServlet",{img:compressed,time:time},function(data){
+				var src = $.parseJSON(data).src;
+				$('#pic4-add').css('display','none');
+				$('#pic4').attr('src',src);
+				$('#pic4').css('display','block');
+				$('#bipic').attr('src',src);
+				$('#pic4-cov').css('display','block');
+				$('#bigpic').css('display','block');
+			});
+		}
+	}
+});
+////////////////////////////////////////////////////////////////////////
+
+function getTags(){
+	var tags='';
+	$('.tagval').each(function(){
+		tags += $(this).text()+'-';
+	});
+	if(tags.length<1){
+		$('.tagbox').css('border-color','red');
+		return;
+	}else{
+		$('.tagbox').css('border-color','#bbb');
+	}
+	return tags;
+}
+function getInfo(){
+	var info = $('#info').val();
+	if (info.length < 1 || info.length > 100 ){
+		$('#info').css('border-color','red');
+		return;
+	}else{
+		$('#info').css('border-color','#bbb');
+	}
+	return info;
+}	
+function getPrice(){
+	var price = $('#price').val();
+	if(!price.match("^\\d+\\.?\\d{0,2}$")||price.length>8){
+		$('#price').css('border-color','red');
+		return;
+	}else{
+		$('#price').css('border-color','#bbb');
+	}
+	return price;
+}
+
+function getCategory(){
+	return $('#category').val();
+}
+function getTbl(){
+	var tbl = document.getElementById('pic1').getAttribute('src');
+	if(tbl == null){
+		$($('.piclist').children().get(0)).css('border-color','red');
+		return;
+	}
+	$($('.piclist').children().get(0)).css('border-color','ddd');
+	return tbl.split('/')[6];
+}
+function getImgs(){
+	var pic1 = document.getElementById('pic1').getAttribute('src');
+	if(pic1 != null){
+		pic1 = pic1.split('/')[6];
+	}else{
+		pic1='';
+	}
+	var pic2 = document.getElementById('pic2').getAttribute('src');
+	if(pic2!=null){
+		pic2 = '-'+pic2.split('/')[6];
+	}else{
+		pic2='';
+	}
+	var pic3 = document.getElementById('pic3').getAttribute('src');
+	if(pic3!=null){
+		pic3 = '-'+pic3.split('/')[6];
+	}else{
+		pic3=''
+	}
+	var pic4 = document.getElementById('pic4').getAttribute('src');
+	if(pic4!=null){
+		pic4 = '-'+pic4.split('/')[6];
+	}else{
+		pic4='-';
+	}	
+	return pic1+pic2+pic3+pic4;
+}
+	
+$('#info').keyup(function(){
+	getInfo();
+});
+$('#price').keyup(function(){
+	getPrice();
+});	
+$('.taginput').keyup(function(){
+	getTags();
+});	
+$('#subgood').click(function(){
+	var info = getInfo();
+	var price = getPrice();
+	var tagString = getTags();
+	var picString = getImgs();
+	var category = getCategory();
+	var tbl = getTbl();
+	
+	if(info == null || price == null || tagString == null || picString == null || category == null || tbl == null){
+		showAlert('数据有误');
+		return;
+	}
+	var json = {};
+	json.info = info;
+	json.price = price;
+	json.tagString = tagString;
+	json.picString = picString;
+	json.category = category;
+	json.tbl = tbl;
+	json = JSON.stringify(json);
+	$.post('save.GoodServlet',{json:json},function(data){
+		if($.parseJSON(data).success){
+			updateRight(window.location.hash);
+			showAlert('上传成功');
+		}else{
+			showAlert('上传异常');
+		}
+	});
+});	
+
+
+</script>

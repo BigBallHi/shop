@@ -1,0 +1,273 @@
+<nav class="nav-r">
+	<a href="#userinfo" class="tab active">
+		<i class="icon icon-dol"></i>
+		编辑资料
+	</a>
+</nav>
+<div class="con-r">
+	<div class="form form-first">
+		<div class="formtitle"><p><span class="downline"></span>基本信息<span class="hint">Basic Information</span></p></div>
+		<div class="formmain">
+			<div class="unit-basic">
+					<div class="l a">
+						<a href="#avatar" class="ava">
+							<img id="mdf-ava" src="">
+						</a>
+					</div>
+					<div class="l b">
+						<a href="#" id = "mdf-name"class="name"></a>
+						<input maxlength="10" type="text" id="mdf-nameipt">
+						<span>您是第<span id="mdf-id">10</span>位用户</span>
+						<span>注册于 <span id="mdf-gmt" class="time">2017-04-25 13:38:39</span></span>
+						<input maxlength="30" type="text" name="" id="descinput2">
+						<p title="单机修改" class="desc2"><span id="mdf-info"></span><i class="icon icon-set"></i></p>
+						
+					</div>
+					<span class="clearfix"></span>
+			</div>
+			<p class="divider"></p>
+			<div class="unit-tool">
+				<div class="l">
+					<a class="util util-ava" href="#avatar"><i class="icon icon-u"></i>&nbsp;修改头像</a>
+					<a class="util util-sig"><i class="icon icon-u"></i>&nbsp;修改个性签名</a>
+					<a class="util util-nam"><i class="icon icon-u"></i>&nbsp;修改昵称</a>
+				</div>
+				<div class="r">
+					<a class="util util-pwd" href="#"><i class="icon icon-u"></i>&nbsp;修改密码</a>
+				</div>
+				<span class="clearfix"></span>
+			</div>
+		</div>
+	</div>
+	<div class="form form-second">
+		<div class="formtitle"><p><span class="downline"></span>扩展信息<span class="hint">Extra Information</span></p></div>
+		<div class="alert">
+			<br>
+			请留空您不想暴露的个人信息，以免造成不必要的隐私泄露。
+		</div>
+		<div class="unit">
+			<div class="l"><p class="subtitle">qq号码</p></div>
+			<div class="r"><input maxlength="10" id="mdf-qq" type="text" class="price"></div>
+			<span class="clearfix"></span>
+		</div>
+		<p class="divider"></p>
+		<div class="unit">
+			<div class="l"><p class="subtitle">邮箱</p></div>
+			<div class="r"><input id="mdf-email" type="mail" class="price"></div>
+			<span class="clearfix"></span>
+		</div>	
+		<p class="divider"></p>
+		<div class="unit">
+			<div class="l"><p class="subtitle">真实姓名</p></div>
+			<div class="r"><input maxlength="10" id="mdf-realname" type="text" class="price"></div>
+			<span class="clearfix"></span>
+		</div>
+		<p class="divider"></p>
+		<div class="unit">
+			<div class="l"><p class="subtitle">性别</p></div>
+			<div class="r">
+				
+				<select id="mdf-sex">
+					<option>不公布</option>
+					<option>男</option>
+					<option>女</option>
+				</select>
+				
+			</div>
+			<span class="clearfix"></span>
+		</div>
+		<p class="divider"></p>
+		<div class="unit">
+			<div class="l"><p class="subtitle">宿舍</p></div>
+			<div class="r">
+				<select id="mdf-loc1">
+					<option>不公布</option>
+					<option>行健</option>
+					<option>弘毅</option>
+					<option>至诚</option>
+					<option>敏行</option>
+				</select>
+				<select id="mdf-loc2">
+					<option>不公布</option>
+					<option>一栋</option>
+					<option>二栋</option>
+					<option>三栋</option>
+					<option>四栋</option>
+					<option>五栋</option>
+					<option>六栋</option>
+				</select>
+				
+			</div>
+			<span class="clearfix"></span>
+		</div>	
+		<p class="divider"></p>
+		<button class="save"><i class='icon icon-p'></i>保存个人资料</button>
+	</div>
+	<div class="form form-third">
+		<div class="formtitle"><p><span class="downline"></span>隐私设置<span class="hint">Privacy Settings</span></p></div>
+		<div class="formmain">
+			<div class="unit-set">
+				<div class="l"><p>公布我的的电话</p></div>
+				<div class="r"><div id="mdf-seephone" class="switch"></div></div>
+				<span class="clearfix"></span>
+			</div>
+			<p class="divider"></p>
+			<div class="unit-set">
+				<div class="l"><p>公布我的QQ</p></div>
+				<div class="r"><div id="mdf-seeqq" class="switch"></div></div>
+				<span class="clearfix"></span>
+			</div>
+			<p class="divider"></p>
+			<div class="unit-set">
+				<div class="l"><p>其他拓展信息可见</p></div>
+				<div class="r"><div id="mdf-seeelse" class="switch"></div></div>
+				<span class="clearfix"></span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+
+$(document).ready(function(){
+	$.getJSON('getUserModifyInfo.UserServlet',function(json){
+		if(json.avatar == 'avatar.jpg'){
+			$('#mdf-ava').attr('src',HOSTAVATAR+'/avatar.jpg');
+		}else{
+			
+			$('#mdf-ava').attr('src',HOSTAVATAR+'/'+json.avatar);
+		}
+		$('#mdf-name').html(json.name);
+		$('#mdf-id').html(json.id);
+		$('#mdf-gmt').html(json.gmt_create);
+		$('#mdf-info').html(json.info);
+		$('#mdf-qq').val(json.qq);
+		$('#mdf-email').val(json.email);
+		$('#mdf-realname').val(json.realname);
+		var loc1 = json.location.split('-')[0];
+		var loc2 = json.location.split('-')[1];
+		
+		$('#mdf-sex option:contains("'+json.sex+'")').attr("selected",true);
+		$('#mdf-loc1 option:contains("'+loc1+'")').attr("selected",true);
+		$('#mdf-loc2 option:contains("'+loc2+'")').attr("selected",true);
+		
+		
+		if(json.seephone){
+			$('#mdf-seephone').addClass('active');
+		}
+		if(json.seeqq){
+			$('#mdf-seeqq').addClass('active');
+		}
+		if(json.seeelse){
+			$('#mdf-seeelse').addClass('active');
+		}
+	});
+});
+
+
+
+
+
+$('.util-sig').click(function(){
+	$('.desc2').trigger('click');
+});
+
+$('.util-pwd').click(function(){
+	$('#setpwdBox').show();
+});
+
+$('#btn_setpwd').click(function(){
+	var oldpwd = $('#input_setpwd_old').val();
+	var newpwd = $('#input_setpwd_new').val();
+	updatePwd(oldpwd,newpwd);
+});
+$('.desc2').click(function(){
+	var t = $('#mdf-info').html();
+	$('.desc2').hide();
+	$('#descinput2').show();
+	$('#descinput2').val(t);
+	$('#descinput2').focus();
+	$('#descinput2').select();
+	
+});
+$('#descinput2').blur(function(){	
+	$('.desc2').show();
+	$('#descinput2').hide();
+	if($('#mdf-info').html()!=$('#descinput2').val()){
+		$('#mdf-info').html($('#descinput2').val());	
+		$.getJSON('modifiUserInfo.UserServlet?info='+$('#descinput2').val(),function(json){
+			if(json.success){
+				
+				showAlert('更新签名成功');
+			}
+		});
+	}
+	
+});
+$('.util-nam').click(function(){
+	var t = $('#mdf-name').html();
+	$('#mdf-name').hide();
+	$('#mdf-nameipt').show();
+	$('#mdf-nameipt').val(t);
+	$('#mdf-nameipt').focus();
+	$('#mdf-nameipt').select();
+});
+$('#mdf-nameipt').blur(function(){	
+	$('#mdf-name').show();
+	$('#mdf-nameipt').hide();
+	if($('#mdf-name').html()!=$('#mdf-nameipt').val()){
+		$('#mdf-name').html($('#mdf-nameipt').val());	
+		$.getJSON('setName.UserServlet?name='+$('#mdf-nameipt').val(),function(json){
+			if(json.success){
+				showAlert('更新签名成功');
+			}
+		});
+	}
+	
+});
+
+$('.save').click(function(){
+	var qq = $('#mdf-qq').val();
+	var email = $('#mdf-email').val();
+	var realname = $('#mdf-realname').val();
+	var sex = $('#mdf-sex').val();
+	var loc1 = $('#mdf-loc1').val();
+	var loc2 = $('#mdf-loc2').val();
+	var location = loc1+'-'+loc2;
+	$.getJSON('saveExtraInfo.UserServlet?qq='+qq+'&&email='+email+'&&sex='+sex+'&&location='+location+'&&realname='+realname,function(json){
+		if(json.success){
+			showAlert("成功保存");
+		}
+	});
+});
+
+
+
+	$('.switch').click(function(){
+	if($(this).hasClass('active')){
+		var k = $(this).attr('id').split('-')[1];
+		var v = false;
+		$.getJSON('setCansee.UserServlet?k='+k+'&&v='+v,function(json){
+			if(json.success){
+				showAlert("设置成功");	
+			}else{
+				showAlert("设置失败");
+			}
+			
+		});
+		$(this).removeClass('active');	
+	}else{
+		var k = $(this).attr('id').split('-')[1];
+		var v = true;
+		$.getJSON('setCansee.UserServlet?k='+k+'&&v='+v,function(json){
+			if(json.success){
+				showAlert("设置成功");	
+			}else{
+				showAlert("设置失败");
+			}
+		});
+		$(this).addClass('active');
+	}
+	
+});
+</script>

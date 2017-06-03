@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>shop2.3</display-name>
+  <welcome-file-list>
+    <welcome-file>home.html</welcome-file>
+  </welcome-file-list>
+    <servlet>
+    <servlet-name>NeedServlet</servlet-name>
+    <servlet-class>me.hener.servlet.NeedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NeedServlet</servlet-name>
+    <url-pattern>*.NeedServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>me.hener.servlet.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>*.UserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>GoodImgServlet</servlet-name>
+    <servlet-class>me.hener.servlet.GoodImgServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GoodImgServlet</servlet-name>
+    <url-pattern>*.GoodImgServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>GoodServlet</servlet-name>
+    <servlet-class>me.hener.servlet.GoodServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GoodServlet</servlet-name>
+    <url-pattern>*.GoodServlet</url-pattern>
+  </servlet-mapping>
+
+</web-app>

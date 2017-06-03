@@ -1,0 +1,147 @@
+<nav class="nav-r">
+	<a href="#" class="tab active">
+		<i class="icon icon-dol"></i>
+		私信
+	</a>
+</nav>
+<div class="con-r">
+	<div class="form form-first">
+		<div class="alert">
+			出于对隐私的保护，我们不能将卖家的信息告诉每位用户
+			<br>
+			当您联系过对面以后，对面就有权查看您的联系方式了
+			<br>
+			请您放心，系统一般不会给您推送消息的
+			<br>
+		</div>
+	</div>
+	<div class="form form-second">
+		<div class="formtitle"><p><span class="downline"></span>私信<span class="hint">Message</span></p></div>
+		
+	
+	
+	
+	
+	</div>
+</div>
+
+<script>
+
+	$(document).ready(function(){
+		$.get('msgRead.UserServlet');
+		$.getJSON('listMsg.UserServlet',function(json){
+			$('.form-second').html('<div class="formtitle"><p><span class="downline"></span>私信<span class="hint">Message</span></p></div>');
+			list = json.list;
+			var html = [];
+			for(i=0;i<list.length;i++){
+					list[i].time = list[i].time.substr(0,list[i].time.length-5);
+					html.push('<div class="unit-good"><div class="l"><a class="msg-ava" href="javascript:;">');
+					if(json.avatar == 'avatar.jpg'){
+						html.push('<img src='+HOSTAVATAR+'/avatar.jpg'+' class="pre-msgava" href="javascript:;">');
+					}else{
+						html.push('<img src='+HOSTAVATAR+'/'+list[i].srcavatar+' class="pre-msgava" href="javascript:;">');
+					}
+					html.push('</a></div><div class="r msg">');		
+					if(list[i].msgtype=='goodmsg'){
+						html.push('<a href="javascript:;" class="msg-goodpic"><img src='+HOSTTBL+'/'+list[i].taruserid+'/'+list[i].tbl+' class="pre-good"></a>');	
+					}else{
+						html.push('<a href="javascript:;" class="msg-needinfo">'+list[i].info+'</a>');
+					}
+					html.push('<div class="msgcontent"><span class="from"><i class="icon icon-laba"></i>这是一条来自<span class="name">');
+					html.push(list[i].srcname+'</span>的私信</span><span class="msginfo">');
+					html.push(list[i].msgcontent+'</span>');
+					html.push('<span>我的电话：'+list[i].srcphone+'</span>');
+					if(list[i].seeqq){
+						html.push('<br><span>我的QQ：'+list[i].srcqq+'</span>');	
+					}
+					html.push('<br><span class="time">'+list[i].time+'</span>');
+					html.push(' </div></div><span class="clearfix"></span><br><div class="r">');
+					
+					if(list[i].msgtype=='goodmsg'){
+						html.push('<button msgtype="goodmsg" class="mana mana-c" goodid=' + list[i].tarobjid +' locakeduserid='+list[i].lockeduserid+' msgid='+list[i].msgid+'><i class="icon icon-close"></i>解锁并删除消息</button>');
+						
+						html.push('<button msgtype="goodmsg" class="mana mana-dn" goodid=' + list[i].tarobjid +'><i class="icon icon-close"></i>删除商品</button>');
+						
+					}else{
+						html.push('<button msgtype="needmsg" class="mana mana-c" needid=' + list[i].tarobjid +' locakeduserid='+list[i].lockeduserid+' msgid='+list[i].msgid+'><i class="icon icon-close"></i>删除消息并解锁</button>');
+						html.push('<button msgtype="needmsg" class="mana mana-dn" needid=' + list[i].tarobjid +'><i class="icon icon-close"></i>删除需求</button>');
+					}
+					html.push('</div><br></div>')
+					$('.form-second').append(html.join(''));
+					html=[];
+			}
+		});
+	});
+	
+	/**删除消息解除锁定**/
+	$('.form-second').on('click','.mana-c',function(){
+		$.getJSON('deleteMsg.UserServlet?msgid='+$(this).attr('msgid')+'&&msgtype='+$(this).attr('msgtype'),function(json){
+			var hash = window.location.hash;
+			updateRight(hash);
+			showAlert("删除成功");
+		})
+		var type= $(this).attr('msgtype');
+		var lockeduserid = $(this).attr('lockeduserid');
+		if(type=='goodmsg'){
+			var goodid = $(this).attr('goodid');
+			$.get('clearLock.GoodServlet?goodid='+$(this).attr('goodid'),function(){
+				var hash = window.location.hash;
+				updateRight(hash);
+				showAlert("解除锁定成功");
+			});	
+		}else if(type=='needmsg'){
+			var needid = $(this).attr('needid');
+			$.get('clearLock.NeedServlet?needid='+$(this).attr('needid'),function(){
+				var hash = window.location.hash;
+				updateRight(hash);
+				showAlert("解除锁定成功");
+			});
+		}
+	});
+	/**删除发布**/
+	$('.form-second').on('click','.mana-dn',function(){
+		var type= $(this).attr('msgtype');
+		if(type=='goodmsg'){
+			var goodid = $(this).attr('goodid');
+			$('#confirm-deletegood .confirm-ok').attr('goodid',goodid);
+			$('#curtain').show();
+			$('#confirm-deletegood').show();
+			$('.confirm-ok').click(function(){
+				var goodid = $(this).attr('goodid');
+				$.getJSON('removeGood.GoodServlet?goodid='+goodid,function(json){
+					if(json.success){
+						$('.win').hide();
+						$('#curtain').hide();
+						showAlert('删除成功');
+						var hash = window.location.hash;
+						updateRight(hash);
+					}
+				})
+			});
+		}else{
+			var needid = $(this).attr('needid');
+			
+			$('#confirm-deleteneed .confirm-ok').attr('needid',needid);
+			$('#curtain').show();
+			$('#confirm-deleteneed').show();
+			$('.confirm-ok').click(function(){
+				var needid = $(this).attr('needid');
+				$.getJSON('removeNeed.NeedServlet?needid='+needid,function(json){
+					if(json.success){
+						$('.win').hide();
+						$('#curtain').hide();
+						showAlert('删除成功');
+						var hash = window.location.hash;
+						updateRight(hash);
+					}
+				})
+			});
+		}
+	});
+	
+	$('.confirm-nook').click(function(){
+		$('.win').hide();
+		$('#curtain').hide();
+	});
+
+</script>

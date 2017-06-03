@@ -1,0 +1,76 @@
+<nav class="nav-r">
+	<a href="#manager-myupgoods" class="tab">
+		<i class="icon icon-dol"></i>
+		我的上传
+	</a>
+	<a href="#manager-myupneeds" class="tab active">
+		<i class="icon icon-dol"></i>
+		我的需求
+	</a>
+	<a href="#manager-mylock" class="tab">
+		<i class="icon icon-dol"></i>
+		我的锁定
+	</a>
+
+</nav>
+<div class="con-r">
+	<div class="form">
+		
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+	$.getJSON('listMyNeed.NeedServlet',function(json){
+		fillMyNeed(json);
+	});
+});
+$('.form').on('click','.mana-remove',function(){
+	var needid = $(this).attr('needid');
+	showConfirm('confirm-deleteneed',needid);
+	
+});
+function showConfirm(confirmid,objid){
+	$('#'+confirmid+' .confirm-ok').attr('needid',objid);
+	$('#curtain').show();
+	$('#'+confirmid).show();
+}
+$('.confirm-ok').click(function(){
+	var needid = $(this).attr('needid');
+	$.getJSON('removeNeed.NeedServlet?needid='+needid,function(json){
+		if(json.success){
+			$('.win').hide();
+			$('#curtain').hide();
+			showAlert('删除成功');
+			var hash = window.location.hash;
+			updateRight(hash);
+		}
+	})
+});
+$('.confirm-nook').click(function(){
+	$('.win').hide();
+	$('#curtain').hide();
+});
+
+$('.form').on('click','.mana-modify',function(){
+	var needid = $(this).attr('needid');
+	window.location.href='#modify-need#'+needid;
+});
+$('.form').on('click','.mana-contact',function(){
+	$.getJSON('getPQ.NeedServlet?lockeduserid='+$(this).attr('lockeduserid')+'&&needid='+$(this).attr('needid'),function(json){
+		$('.contactphone').html(json.phone);
+		$('.contactqq').html('未公布');
+		$('.contactbox').show();
+	});
+});
+$('.form').on('click','.mana-clearlock',function(){
+	var needid = $(this).attr('needid');
+	var lockeduserid = $(this).attr('lockeduserid');
+	$.get('clearLock.NeedServlet?needid='+$(this).attr('needid'),function(){
+		$.get('banLock.NeedServlet?needid='+needid+'&&lockeduserid='+lockeduserid,function(){
+			var hash = window.location.hash;
+			updateRight(hash);
+			showAlert("解除锁定成功！禁止该用户再次锁定该消息成功！");
+		});
+	});
+});
+</script>

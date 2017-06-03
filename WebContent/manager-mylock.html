@@ -1,0 +1,146 @@
+<nav class="nav-r">
+	<a href="#manager-myupgoods" class="tab">
+		<i class="icon icon-dol"></i>
+		我的上传
+	</a>
+	<a href="#manager-myupneeds" class="tab">
+		<i class="icon icon-dol"></i>
+		我的需求
+	</a>
+	<a href="#manager-mylock" class="tab  active">
+		<i class="icon icon-dol"></i>
+		我的锁定
+	</a>
+
+</nav>
+<div class="con-r">
+	<div class="form">
+		
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+	$('.form').html('');
+	$.getJSON('listMylockGood.GoodServlet',function(json){
+		fillMylockGoods(json);
+	})
+	$.getJSON('listMyLockNeed.NeedServlet',function(json){
+		fillMylockNeeds(json);
+	})
+});
+function fillMylockGoods(json){
+	var list = json.list;
+	
+	if(list.length<=0||json.success==false){
+		$('.form').html('<h1>您还没锁定任何物品哦</h1>');
+	}else{
+		for(i=0;i<list.length;i++){
+			list[i].uptime = list[i].uptime.substr(0,list[i].uptime.length-5);
+			list[i].lockedtime = list[i].lockedtime.substr(0,list[i].lockedtime.length-5);
+			var html = [];
+			html.push('<div class="unit-good"> <div class="l"> <a href="#" class="goodpic"> ');
+			html.push('<img src='+HOSTTBL+"/"+list[i].userid+'/'+list[i].tbl+' class="pre">');
+			html.push('</a></div><div class="r">');
+				
+				html.push('<a href="javascript:;" class="search-category category">'+list[i].category+'</a>');
+				html.push('<div class="detail">'+list[i].goodinfo+'</div>');
+				html.push('<div class="info"><span>上传时间</span><span class="time">'+list[i].uptime+'</span> ');
+				html.push(' <span>访问次数</span><span class="times">'+list[i].clicktimes+'</span> ');
+				html.push(' <span>价格</span><span class="price">'+list[i].price+'</span></div> ');
+				html.push(' <div class="divider"></div><div class="down"><div class="taglist"> ');
+				for(var o in list[i].tags){
+					html.push('<span class="t">'+list[i].tags[o]+'</span>');
+				}
+				html.push('</div><div class="manage">');
+				html.push('<button class="mana mana-clearlock" type="good" goodid='+list[i].goodid+'><i class="icon icon-close"></i>解除锁定</button>');
+				html.push('<button class="mana mana-contact" type="good" userid='+list[i].userid+' goodid='+list[i].goodid+'><i class="icon icon-m"></i>联系他</button>');
+				html.push('</div></div></div><span class="clearfix"></span></div>');
+				$('.form').append(html.join(''));
+				html = [];
+		}
+	}
+}
+
+function fillMylockNeeds(json){
+	var list = json.list;
+	if(list.length<=0||json.success==false){
+		$('.form').html('<h1>您还没锁定过需求哦</h1>');
+	}else{
+		for(i=0;i<list.length;i++){
+			list[i].uptime = list[i].uptime.substr(0,list[i].uptime.length-5);
+			list[i].lockedtime = list[i].lockedtime.substr(0,list[i].lockedtime.length-5);
+			var html = [];
+			html.push('<div class="unit-good">');
+			html.push('<div class="r lockneed">');
+			html.push('<a href="javascript:;" class="search-category category">'+list[i].category+'</a>');
+			html.push('<div class="detail">'+list[i].needinfo+'</div>');
+			html.push('<div class="info"><span>上传时间</span><span class="time">'+list[i].uptime+'</span> ');
+			html.push(' <span>价格</span><span class="price">'+list[i].price+'</span></div> ');
+			html.push(' <div class="divider"></div>');
+			html.push('<div class="down"><div class="manage">');
+			html.push('<button class="mana mana-clearlock" type="need" needid='+list[i].needid+'><i class="icon icon-close"></i>解除锁定</button>');
+			html.push('<button class="mana mana-contact" type="need" userid='+list[i].userid+' needid='+list[i].needid+'><i class="icon icon-m"></i>联系他</button>');
+			html.push('</div></div></div></div><span class="clearfix"></span></div>');
+			$('.form').append(html.join(''));
+			html = [];
+		}
+	}
+}
+
+
+$('.form').on('click','.mana-clearlock',function(){
+	var type= $(this).attr('type');
+	var lockeduserid = $(this).attr('lockeduserid');
+	if(type=='good'){
+		var goodid = $(this).attr('goodid');
+		$.get('clearLock.GoodServlet?goodid='+$(this).attr('goodid'),function(){
+			var hash = window.location.hash;
+			updateRight(hash);
+			showAlert("解除锁定成功");
+		});	
+	}else if(type=='need'){
+		var needid = $(this).attr('needid');
+		$.get('clearLock.NeedServlet?needid='+$(this).attr('needid'),function(){
+			var hash = window.location.hash;
+			updateRight(hash);
+			showAlert("解除锁定成功");
+		});
+	}
+	
+});
+
+
+$('.form').on('click','.mana-contact',function(){
+	var type= $(this).attr('type');
+	if(type=='need'){
+		var userid = $(this).attr('userid');
+		var needid = $(this).attr('needid');
+			getNeedContact(userid,needid);
+			$('.good.r').hide();
+		$('#sendmsgbtn-ok').click(function(){
+			var taruserid = $(this).attr('userid');
+			var needid = $(this).attr('needid');
+			var msgcontent = $('.sendmsg-ipt').val();
+			sendNeedMsg(taruserid,needid,msgcontent);
+		});
+	}else if(type="good"){
+		var userid = $(this).attr('userid');
+		var goodid = $(this).attr('goodid');
+			getGoodContact(userid,goodid);
+			$('.good.r').css('margin-top','93px');
+		$('#sendmsgbtn-ok').click(function(){
+			var taruserid = $(this).attr('userid');
+			var goodid = $(this).attr('goodid');
+			var msgcontent = $('.sendmsg-ipt').val();
+			sendGoodMsg(taruserid,goodid,msgcontent);
+			
+		});
+	}
+	
+});
+$('#ensurebox-msg-nook').click(function(){
+	closeEnsurebox();
+});
+
+
+</script>
